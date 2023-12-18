@@ -14,6 +14,24 @@ jbtabulate <- function(x,variable_types){
   variable_names <- names(x)
   summary_data <- data.frame(VariableName = character(0), Summary = character(0), stringsAsFactors = FALSE)
 
+  calculate_summary <- function(variable, variable_type) {
+    if (variable_type == "Numerical Continuous") {
+      mean_val <- mean(variable, na.rm = TRUE)
+      sd_val <- sd(variable, na.rm = TRUE)
+      return(paste0("", sprintf("%.2f", mean_val), " (SD = ", sprintf("%.2f", sd_val), ")"))
+    } else if (variable_type == "Categorical") {
+      counts <- table(variable)
+      percentages <- prop.table(counts) * 100
+      return(paste(counts, " (", sprintf("%.1f%%", percentages), ")", collapse = "\n"))
+    } else if (variable_type == "Numerical Discrete") {
+      median_val <- median(variable, na.rm = TRUE)
+      iqr_val <- IQR(variable, na.rm = TRUE)
+      return(paste0("", sprintf("%.1f", median_val), " (IQR = ", sprintf("%.2f", iqr_val), ")"))
+    } else {
+      return("Unknown variable type")
+    }
+  }
+
   #Next, add rows to the summary data data frame based on variable types prespecified by user
   for (i in seq_along(variable_names)) {
     var_name <- variable_names[i]
