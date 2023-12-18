@@ -68,19 +68,19 @@ for (i in seq_along(variable_names)) {
   var_name <- variable_names[i]
   var_type <- variable_types[i]
 
-  if (var_type == "Categorical"){
+  if (!is.na(var_type) && var_type == "Categorical") {
     levels <- unique(dataset_for_table[[var_name]])
 
     # Append the categorical variable name only
     summary_data <- rbind(summary_data, data.frame(VariableName = var_name, Summary = "", stringsAsFactors = FALSE))
 
-    for (level in levels){
+    for (level in levels) {
       subset_data <- dataset_for_table[dataset_for_table[[var_name]] == level, , drop = FALSE]
       summary_value <- calculate_summary(subset_data[[var_name]], var_type)
       # Append to the summary data data frame
       summary_data <- rbind(summary_data, data.frame(VariableName = paste0("    ", level), Summary = summary_value, stringsAsFactors = FALSE))
     }
-  } else{
+  } else {
     summary_value <- calculate_summary(dataset_for_table[[var_name]], var_type)
     # Append to the summary data data frame
     summary_data <- rbind(summary_data, data.frame(VariableName = var_name, Summary = summary_value, stringsAsFactors = FALSE))
