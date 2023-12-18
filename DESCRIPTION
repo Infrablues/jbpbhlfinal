@@ -1,0 +1,12 @@
+Package: jbpbhlfinal
+Type: Package
+Title: Takes Demographic Data and Generates Summary Tables using Flextable
+Version: 0.1.0
+Author: Jackson Baril 
+Maintainer: Jackson Baril <jbaril@iu.edu>
+Description: This package is for use for Jackson Baril only, for final exam
+    in biostatistics computing. Th package takes demographic data from a dataset
+    and automatically generates a table using flextable. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
