@@ -98,7 +98,7 @@ ft <- flextable::set_table_properties(ft, layout = "autofit") %>%
 
 ft <- set_header_labels(ft, VariableName = "Variable")
 
-header_label <- paste("Summary (n=", nrow(original_data), ")", sep = "")
+header_label <- paste("Summary (n=", nrow(x), ")", sep = "")
 ft <- set_header_labels(ft, Summary = header_label)
 
 # Print the flextable
