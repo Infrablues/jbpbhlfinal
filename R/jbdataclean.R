@@ -1,21 +1,21 @@
 
-#test3
+#test4
 #This first part is a chunk of code to import .xlsx data for which the first row
 #is variable column names. It asks the user for the path
 #
 #' This code helps identify missing data from our table
 #'
-#' @param original_data the data being inputted
+#' @param x the data being inputted
 #'
 #' @return the output of print, it tells you what data is missing \code\{\link{print}}
 #' @export
 #'
 #'
-jbdataclean <- function(original_data){
+jbdataclean <- function(x){
 
 
 #the code will check for missing elements or NA elements
-missing_by_column <- colSums(is.na(original_data) | original_data == "" | original_data == "ERROR" | original_data == "N/A")
+missing_by_column <- colSums(is.na(x) | x == "" | x == "ERROR" | x == "N/A")
 #weirdly I could not get the above code to work if the dataset included a column with a date...
 
 print(missing_by_column)
