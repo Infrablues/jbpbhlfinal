@@ -68,23 +68,19 @@ for (i in seq_along(variable_names)) {
   var_name <- variable_names[i]
   var_type <- variable_types[i]
 
-  # Assuming you want to create or update a global variable named dataset_for_table
-  assign("dataset_for_table", dataset_for_table, envir = .GlobalEnv)
-
-  #erorrs with the environment I think
-  if (var_type == "Categorical") {
+  if (var_type == "Categorical"){
     levels <- unique(dataset_for_table[[var_name]])
 
     # Append the categorical variable name only
     summary_data <- rbind(summary_data, data.frame(VariableName = var_name, Summary = "", stringsAsFactors = FALSE))
 
-    for (level in levels) {
+    for (level in levels){
       subset_data <- dataset_for_table[dataset_for_table[[var_name]] == level, , drop = FALSE]
       summary_value <- calculate_summary(subset_data[[var_name]], var_type)
       # Append to the summary data data frame
       summary_data <- rbind(summary_data, data.frame(VariableName = paste0("    ", level), Summary = summary_value, stringsAsFactors = FALSE))
     }
-  } else {
+  } else{
     summary_value <- calculate_summary(dataset_for_table[[var_name]], var_type)
     # Append to the summary data data frame
     summary_data <- rbind(summary_data, data.frame(VariableName = var_name, Summary = summary_value, stringsAsFactors = FALSE))
@@ -100,7 +96,7 @@ ft <- flextable::set_table_properties(ft, layout = "autofit") %>%
 
 ft <- set_header_labels(ft, VariableName = "Variable")
 
-header_label <- paste("Summary (n=", nrow(x), ")", sep = "")
+header_label <- paste("Summary (n=", nrow(original_data), ")", sep = "")
 ft <- set_header_labels(ft, Summary = header_label)
 
 # Print the flextable
