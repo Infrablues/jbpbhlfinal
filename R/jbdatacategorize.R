@@ -103,4 +103,3 @@ ft <- set_header_labels(ft, Summary = header_label)
 
 # Print the flextable
 ft
-}
