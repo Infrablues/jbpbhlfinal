@@ -21,7 +21,8 @@ jbtabulate <- function(x,variable_types){
       return(paste0("", sprintf("%.2f", mean_val), " (SD = ", sprintf("%.2f", sd_val), ")"))
     } else if (variable_type == "Categorical") {
       counts <- table(variable)
-      percentages <- prop.table(counts) * 100
+      nrow(x) <- totcounts
+      percentages <- counts/totcounts * 100
       return(paste(counts, " (", sprintf("%.1f%%", percentages), ")", collapse = "\n"))
     } else if (variable_type == "Numerical Discrete") {
       median_val <- median(variable, na.rm = TRUE)
