@@ -32,6 +32,7 @@ for (i in seq_along(variable_names)) {
 #types of variables for vars that won't be included in the final table anyway
 
 #now I need a dataset that is only the included variables
+
 dataset_for_table <- x[, included_variables]
 
 print(n=6, dataset_for_table) #just to check that the correct things have been included
