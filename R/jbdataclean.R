@@ -31,5 +31,6 @@ if (length(columns_with_missing) > 0) {
 } else {
   print("No missing elements detected in the dataset.\n")
 }
+print("Next, create two strings with Numerical Continuous, Categorical, Numerical Discrete as options in the string. this will be your variable_types")
 }
 #the above code all worked with my sample dataset thus far
