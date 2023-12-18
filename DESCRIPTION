@@ -1,6 +1,6 @@
 Package: jbpbhlfinal
 Type: Package
-Title: Takes Demographic Data and Generates Summary Tables using Flextable
+Title: Takes Demographic Data and Generates Summary Tables using Flextable package
 Version: 0.1.0
 Author: Jackson Baril 
 Maintainer: Jackson Baril <jbaril@iu.edu>
