@@ -69,7 +69,8 @@ summary_data <- data.frame(VariableName = character(0), Summary = character(0), 
 for (i in seq_along(variable_names)) {
   var_name <- variable_names[i]
   var_type <- variable_types[i]
-
+  dataset_for_table <<- dataset_for_table #had to add this in because I was getting
+  #erorrs with the environment I think
   if (var_type == "Categorical") {
     levels <- unique(dataset_for_table[[var_name]])
 
