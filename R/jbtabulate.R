@@ -21,7 +21,7 @@ jbtabulate <- function(x,variable_types){
       return(paste0("", sprintf("%.2f", mean_val), " (SD = ", sprintf("%.2f", sd_val), ")"))
     } else if (variable_type == "Categorical") {
       counts <- table(variable)
-      nrow(x) <- totcounts
+      totcounts <- nrow(x)
       percentages <- counts/totcounts * 100
       return(paste(counts, " (", sprintf("%.1f%%", percentages), ")", collapse = "\n"))
     } else if (variable_type == "Numerical Discrete") {
