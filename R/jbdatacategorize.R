@@ -3,7 +3,7 @@
 #'
 #' @param x
 #'
-#' @return #the output is that it confirms what you wanted to put in your final table
+#' @return #the output is you final table ready for publish
 #' @export
 #'
 #'
@@ -27,9 +27,6 @@ for (i in seq_along(variable_names)) {
   }
 }
 
-#i suppose the above code could be optimized by first asking if the variable should be included
-#and then asking for the type of variable it is, so the user isn't forced to identify
-#types of variables for vars that won't be included in the final table anyway
 
 #now I need a dataset that is only the included variables
 
@@ -39,7 +36,7 @@ print(n=6, dataset_for_table) #just to check that the correct things have been i
 
 #and corresponding variable types
 variable_types_for_table <- variable_types[names(variable_types) %in% included_variables]
-}
+
 
 calculate_summary <- function(variable, variable_type) {
   if (variable_type == "Numerical Continuous") {
@@ -70,7 +67,10 @@ summary_data <- data.frame(VariableName = character(0), Summary = character(0), 
 for (i in seq_along(variable_names)) {
   var_name <- variable_names[i]
   var_type <- variable_types[i]
-  dataset_for_table <<- dataset_for_table #had to add this in because I was getting
+
+  # Assuming you want to create or update a global variable named dataset_for_table
+  assign("dataset_for_table", dataset_for_table, envir = .GlobalEnv)
+
   #erorrs with the environment I think
   if (var_type == "Categorical") {
     levels <- unique(dataset_for_table[[var_name]])
@@ -105,3 +105,4 @@ ft <- set_header_labels(ft, Summary = header_label)
 
 # Print the flextable
 ft
+}
